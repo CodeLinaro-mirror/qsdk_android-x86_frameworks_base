@@ -319,11 +319,13 @@ void android_os_Process_setThreadPriority(JNIEnv* env, jobject clazz,
 
     int rc = androidSetThreadPriority(pid, pri);
     if (rc != 0) {
+#if 0
         if (rc == INVALID_OPERATION) {
             signalExceptionForPriorityError(env, errno);
         } else {
             signalExceptionForGroupError(env, errno);
         }
+#endif
     }
 
     //ALOGI("Setting priority of %" PRId32 ": %" PRId32 ", getpriority returns %d\n",
